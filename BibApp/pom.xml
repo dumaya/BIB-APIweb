@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>dumaya.dev</groupId>
-	<artifactId>Ouvrage</artifactId>
+	<artifactId>BibApp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Ouvrage</name>
-	<description>Microservice de gestion des ouvrages</description>
+	<name>BibApp</name>
+	<description>API Web Bibliothèque</description>
 
 	<properties>
 		<java.version>1.8</java.version>

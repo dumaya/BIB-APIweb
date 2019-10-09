@@ -1,4 +1,4 @@
-package dumaya.dev.Ouvrage;
+package dumaya.dev.BibApp;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class OuvrageApplicationTests {
+public class BibAppTests {
 
 	@Test
 	public void contextLoads() {
