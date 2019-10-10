@@ -1,5 +1,7 @@
 package dumaya.dev.BibApp.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -7,11 +9,11 @@ import javax.persistence.*;
 public class Ouvrage {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="ouvrage_id")
+    @Column
     private int id;
-    @Column(name="id_reference")
+    @Column
     private int idReference;
-    @Column(name="emplacement")
+    @Column
     private String emplacement;
 
     public int getId() {
