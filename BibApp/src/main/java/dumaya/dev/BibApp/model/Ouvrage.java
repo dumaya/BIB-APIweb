@@ -22,8 +22,6 @@ public class Ouvrage {
     public void setId(int id) {
         this.id = id;
     }
-
-
     public int getIdReference() {
         return idReference;
     }

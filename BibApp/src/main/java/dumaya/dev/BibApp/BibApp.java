@@ -10,7 +10,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 
 @SpringBootApplication
-@Import(SpringDataRestConfiguration.class)
 @EnableSwagger2
 public class BibApp {
 	@Autowired
