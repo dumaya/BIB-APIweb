@@ -3,6 +3,7 @@ package dumaya.dev.BibApp.controller;
 import dumaya.dev.BibApp.model.Ouvrage;
 import dumaya.dev.BibApp.model.Reference;
 import dumaya.dev.BibApp.repository.OuvrageRepository;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

@@ -4,6 +4,7 @@ import dumaya.dev.BibApp.model.Ouvrage;
 import dumaya.dev.BibApp.model.Pret;
 import dumaya.dev.BibApp.repository.OuvrageRepository;
 import dumaya.dev.BibApp.repository.PretRepository;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,6 +27,15 @@ public class PretController {
     @GetMapping(value = "/prets/{id}")
     public Pret recupererUnPret (@PathVariable("id") int id){
         Pret pret = pretRepository.findById(id);
+        if (pret == null) throw new NotFoundException("Ce pret n'existe pas");
+        return pret;
+    }
+
+    @GetMapping(value = "/prets/ouvrage/{id}")
+    public Pret pretDeLOuvrage (@PathVariable("id") int id){
+        List<Pret> listePret = pretRepository.findByIdOuvrage(id);
+
+
         if (pret == null) throw new NotFoundException("Ce pret n'existe pas");
         return pret;
     }
