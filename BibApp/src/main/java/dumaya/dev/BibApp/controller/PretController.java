@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -38,12 +39,12 @@ public class PretController {
         return pret;
     }
 
-    @GetMapping(value = "/prets/ouvrage/{id}")
+    @GetMapping(value = "/prets/ouvrages/{id}")
     public Pret pretEnCours (@PathVariable("id") int id){
         List<Pret> listePret = pretRepository.findByIdOuvrage(id);
         Pret pretEnCours = null;
         for (Pret pret : listePret) {
-            if (pret.getDateFin().after(new Date())) {
+            if (null != pret.getDateRetour()) {
                 if (pretEnCours != null) {
                     //cas de 2 prets sur la même période
                     LOGGER.error("cas de 2 prets sur la même période, idOuvrage : " + pret.getIdOuvrage());
@@ -53,5 +54,16 @@ public class PretController {
             }
         }
         return pretEnCours;
+    }
+    @GetMapping(value = "/prets/usagers/{id}")
+    public List<Pret> pretsUsager (@PathVariable("id") int id){
+        List<Pret> listePret = pretRepository.findByIdUsager(id);
+        List<Pret> listePretEnCours = new ArrayList<>();
+        for (Pret pret : listePret) {
+            if (null == pret.getDateRetour()) {
+                listePretEnCours.add(pret);
+            }
+        }
+        return listePretEnCours;
     }
 }

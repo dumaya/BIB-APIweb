@@ -12,4 +12,5 @@ import java.util.List;
 public interface PretRepository extends JpaRepository<Pret, Integer> {
     Pret findById(@Param("id") int id);
     List<Pret> findByIdOuvrage(@Param("id") int id);
+    List<Pret> findByIdUsager(@Param("id") int id);
 }

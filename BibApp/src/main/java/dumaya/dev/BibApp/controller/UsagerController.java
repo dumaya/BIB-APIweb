@@ -29,10 +29,17 @@ public class UsagerController {
         return usager;
     }
 
+    @GetMapping(value = "/usagers/email/{email}")
+    public Usager recupererUnUsagerParEmail (@PathVariable("email") String email){
+        Usager usager = usagerRepository.findByEmail(email);
+        if (usager == null) throw new NotFoundException("Cet usager n'existe pas");
+        return usager;
+    }
+
     @PostMapping(value = "/usagers/")
     @ResponseBody
     public Usager creerUnUsager (@RequestBody Usager usager){
-        Usager usagerExistant =usagerRepository.findByIdWeb(usager.getIdWeb());
+        Usager usagerExistant =usagerRepository.findById(usager.getId());
         if(null != usagerExistant) {
             majUsager(usager , usagerExistant);
             usagerRepository.save(usagerExistant);
@@ -40,7 +47,6 @@ public class UsagerController {
         } else {
             Usager usagerACreer = new Usager();
             majUsager(usager, usagerACreer);
-            usagerACreer.setIdWeb(usager.getIdWeb());
             usagerRepository.save(usagerACreer);
             usager=usagerACreer;
         }
@@ -48,8 +54,11 @@ public class UsagerController {
     }
 
     private void majUsager(Usager usagerSource, Usager usagerCible) {
-        usagerCible.setMail(usagerSource.getMail());
+        usagerCible.setEmail(usagerSource.getEmail());
         usagerCible.setNom(usagerSource.getNom());
         usagerCible.setPrenom(usagerSource.getPrenom());
+        usagerCible.setPassword(usagerSource.getPassword());
+        usagerCible.setRoles(usagerSource.getRoles());
+        usagerCible.setActive(usagerSource.isActive());
     }
 }

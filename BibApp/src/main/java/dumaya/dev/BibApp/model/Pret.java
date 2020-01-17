@@ -17,6 +17,8 @@ public class Pret {
     @Column
     private Date dateFin;
     @Column
+    private Date dateRetour;
+    @Column
     private Boolean topProlongation;
 
     public int getId() {
@@ -57,5 +59,13 @@ public class Pret {
 
     public void setTopProlongation(Boolean topProlongation) {
         this.topProlongation = topProlongation;
+    }
+
+    public Date getDateRetour() {
+        return dateRetour;
+    }
+
+    public void setDateRetour(Date dateRetour) {
+        this.dateRetour = dateRetour;
     }
 }
