@@ -28,3 +28,6 @@ INSERT INTO usager_role (usager_id, role_id) VALUES (100, 30);
 INSERT INTO usager (usager_id, nom, prenom, email, password,active) VALUES (200, 'Tom', 'Dumoulin', 'alexlanoisette@gmail.fr', '$2a$10$RyY4bXtV3LKkDCutlUTYDOKd2AiJYZGp4Y7MPVdLzWzT1RX.JRZyG',true );
 INSERT INTO usager_role (usager_id, role_id) VALUES (200, 10);
 INSERT INTO usager_role (usager_id, role_id) VALUES (200, 20);
+INSERT INTO usager (usager_id, nom, prenom, email, password,active) VALUES (300, 'Tom', 'Dumoulin', 'alexis.dumay@axo.fr', '$2a$10$WIWPV37ctLhznLfqrdpksuNPLq9zteepHAP0FoDjU7CKCOIgHDdrK',true );
+INSERT INTO usager_role (usager_id, role_id) VALUES (300, 10);
+INSERT INTO usager_role (usager_id, role_id) VALUES (300, 20);

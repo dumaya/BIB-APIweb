@@ -10,10 +10,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 
@@ -36,6 +38,22 @@ public class PretController {
     public Pret recupererUnPret (@PathVariable("id") int id){
         Pret pret = pretRepository.findById(id);
         if (pret == null) throw new NotFoundException("Ce pret n'existe pas");
+        return pret;
+    }
+
+    @PutMapping(value = "/prets/{id}")
+    public Pret prolongerUnPret (@PathVariable("id") int id){
+        Pret pret = pretRepository.findById(id);
+        if (pret == null) throw new NotFoundException("Ce pret n'existe pas");
+        if (pret.getTopProlongation()) throw new NotFoundException("Ce pret a déjà été prolongé");
+        pret.setTopProlongation(true);
+        Date dateProlongee = new Date();
+        GregorianCalendar gc = new GregorianCalendar();
+        gc.setTime(pret.getDateFin());
+        gc.add(GregorianCalendar.DATE,30);
+        dateProlongee = gc.getTime();
+        pret.setDateFin(dateProlongee);
+        pretRepository.save(pret);
         return pret;
     }
 
