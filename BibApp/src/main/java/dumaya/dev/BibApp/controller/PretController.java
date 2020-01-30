@@ -41,7 +41,7 @@ public class PretController {
         return pret;
     }
 
-    @PutMapping(value = "/prets/{id}")
+    @PutMapping(value = "/prets/prolongation/{id}")
     public Pret prolongerUnPret (@PathVariable("id") int id){
         Pret pret = pretRepository.findById(id);
         if (pret == null) throw new NotFoundException("Ce pret n'existe pas");
