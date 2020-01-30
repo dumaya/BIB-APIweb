@@ -46,6 +46,7 @@ public class PretController {
         Pret pret = pretRepository.findById(id);
         if (pret == null) throw new NotFoundException("Ce pret n'existe pas");
         if (pret.getTopProlongation()) throw new NotFoundException("Ce pret a déjà été prolongé");
+        if (null != pret.getDateRetour() ) throw new NotFoundException("On ne peut pas prolonger un pret déjà retourné");
         pret.setTopProlongation(true);
         Date dateProlongee = new Date();
         GregorianCalendar gc = new GregorianCalendar();
@@ -53,6 +54,16 @@ public class PretController {
         gc.add(GregorianCalendar.DATE,30);
         dateProlongee = gc.getTime();
         pret.setDateFin(dateProlongee);
+        pretRepository.save(pret);
+        return pret;
+    }
+
+    @PutMapping(value = "/prets/retour/{id}")
+    public Pret retourDePret (@PathVariable("id") int id){
+        Pret pret = pretRepository.findById(id);
+        if (pret == null) throw new NotFoundException("Ce pret n'existe pas");
+        if (null != pret.getDateRetour() ) throw new NotFoundException("Ce pret a déjà été retourné");
+        pret.setDateRetour(new Date());
         pretRepository.save(pret);
         return pret;
     }
