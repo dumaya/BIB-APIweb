@@ -9,5 +9,4 @@ public interface UsagerRepository extends JpaRepository<Usager, Integer> {
 
     Usager findById(int id);
     Usager findByEmail(String email);
-
 }
